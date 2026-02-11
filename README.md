@@ -1,5 +1,5 @@
 Markdown
-2. # RESTful API Activity - Janna Mae V. Linga
+2. # RESTful API Activity 
 3. ## Best Practices Implementation
 4. **1. Environment Variables:**
 5. - Why did we put `BASE_URI` in `.env` instead of hardcoding it?
@@ -22,10 +22,18 @@ Markdown
 
 ------------------------------------------------------------------
 
-ACTIVITY 3
-Deliverable - Janna Mae V. Linga BSI/T 3D
 
-1. Why did I choose to Embed the [Review/Tag/Log]?
-Answer: I choose to embed the review because they are closely related to the parent document and don’t need to exist independently
-2. Why did I choose to Reference the [Chef/User/Guest]?
-Answer: I choose to reference the chef to avoids duplication and keeps the database normalized.
+# Database Design Decisions
+
+## 1. Why Embed the Review/Tag/Log?
+
+I chose to embed the **Review/Tag/Log** because they are closely related to the parent document and are not intended to exist independently. These data entries are always accessed together with their parent record, so embedding keeps all related information in a single document.
+
+This approach improves performance by allowing the system to retrieve all necessary data in one query without additional lookups. It also simplifies data management, since updates to the parent document can include its associated reviews, tags, or logs in the same operation. Because this data is typically small and context-specific, embedding is an efficient and practical design choice.
+
+
+## 2. Why Reference the Chef/User/Guest?
+
+I chose to reference the **Chef** because they are independent entities that can be associated with multiple documents within the system. Referencing avoids duplicating the same information across different records, which helps maintain database normalization.
+
+By storing this data separately, updates (such as name or contact details) only need to be made in one place. This ensures data consistency, reduces redundancy, and makes the system more scalable as it grows.

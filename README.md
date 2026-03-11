@@ -37,3 +37,14 @@ This approach improves performance by allowing the system to retrieve all necess
 I chose to reference the **Chef** because they are independent entities that can be associated with multiple documents within the system. Referencing avoids duplicating the same information across different records, which helps maintain database normalization.
 
 By storing this data separately, updates (such as name or contact details) only need to be made in one place. This ensures data consistency, reduces redundancy, and makes the system more scalable as it grows.
+
+## ACTIVITY 3
+
+## 1. What is the difference between Authentication and Authroization in our  code?
+    Answer:Authentication verifies who you are (like logging in), while authorization checks what you can do (like editing a post). Think of it as two steps: "Are you legit?" (authn) and "are you allowed?" (authz).
+
+## 2. Why did we bcryptjs instead of saving passwords as plain text in MongoDB?
+    Answer: Saving passwords as plain text is a big no becuase if the DB gets hacked, all passwords are exposed. Bcryptjs hashes & salts passwords, making them unreadable. Even if DB is compromised, passwords are still protected.
+    
+## 3. What does the protect middleware do when it recieves a JWT from the client?
+    Answer: The protect middlesware usually verifies the JWt signature (checks if legit), decodes the token to get user data (like ID), attaches user data to req.user, and calls next() to continue to route handler.

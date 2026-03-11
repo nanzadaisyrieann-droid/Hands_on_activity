@@ -17,6 +17,8 @@ const apiRoutes = require('./src/routes/apiRoutes');
 app.use(process.env.BASE_URI, apiRoutes);
 const chefRoutes = require('./src/routes/chefRoutes');
 app.use(process.env.BASE_URI, chefRoutes);
+const authRoutes = require('./src/routes/authroutes');
+app.use('/api/v1/auth', authRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

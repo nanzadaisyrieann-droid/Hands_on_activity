@@ -20,9 +20,15 @@ app.use(process.env.BASE_URI, chefRoutes);
 const authRoutes = require('./src/routes/authroutes');
 app.use('/api/v1/auth', authRoutes);
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-    console.log(`Base URI: http://localhost:${PORT}${BASE_URI}`);
-    console.log(`API ready at: http://localhost:${PORT}${BASE_URI}/dishes`);
-    console.log(`API ready at: http://localhost:${PORT}${BASE_URI}/chefs`);
-});
+if (process.env.NODE_ENV !== 'test') {
+    connectDB(); // Ensure DB connection is established before starting the server
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+        console.log(`Base URI: http://localhost:${PORT}${BASE_URI}`);
+        console.log(`API ready at: http://localhost:${PORT}${BASE_URI}/dishes`);
+        console.log(`API ready at: http://localhost:${PORT}${BASE_URI}/chefs`);
+    });
+}
+
+module.exports = app;
+
